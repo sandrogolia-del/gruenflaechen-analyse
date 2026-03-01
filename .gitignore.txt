@@ -1,6 +1,0 @@
-data/raw/
-data/processed/
-*.csv
-*.gpkg
-__pycache__/
-.ipynb_checkpoints/
