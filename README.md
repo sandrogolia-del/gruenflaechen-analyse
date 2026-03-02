@@ -42,7 +42,7 @@ Niemand wohnt weiter als 1 km von einem Naherholungsgebiet entfernt.
 
 - Stadtumland wird nicht berücksichtigt
 - Nur kartierte OSM-Flächen werden analysiert
-- Bewirtschaftete Flächen wie das Meßdorfer Feld fehlen
+- Bewirtschaftete Flächen wie das Meßdorfer Feld in Bonn, welches gerne als Naherholungsgebiet genutzt wird, fehlen
 - Luftlinie ≠ tatsächlicher Gehweg
   
 ---
