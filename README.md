@@ -1,6 +1,6 @@
 # 🌳 Grünflächen-Erreichbarkeitsanalyse
 
-Bevölkerungsgewichtete Analyse der fußläufigen Erreichbarkeit von Naherholungsgebieten in deutschen Städten – basierend auf OpenStreetMap und Zensus 2022.
+Bevölkerungsgewichtete Analyse der Erreichbarkeit von Naherholungsgebieten in deutschen Städten – basierend auf OpenStreetMap und Zensus 2022.
 
 ---
 
@@ -26,6 +26,65 @@ Bevölkerungsgewichtete Analyse der fußläufigen Erreichbarkeit von Naherholung
 
 ### Bevölkerungskarte
 ![Bevölkerungskarte Bonn](outputs/bonn_bevoelkerung.png)
+
+---
+
+## 🚀 Verwendung
+
+### Voraussetzungen
+
+```bash
+pip install -r requirements.txt
+```
+
+### Zensus-Daten
+
+Die Zensus-CSV wird benötigt aber nicht mitgeliefert (Dateigröße > 100 MB).
+
+**Download:** [destatis.de](https://www.destatis.de/static/DE/zensus/gitterdaten/Zensus2022_Bevoelkerungszahl.zip)  
+**Dateiname:** `Zensus2022_Bevoelkerungszahl_100m-Gitter.csv`  
+**Speicherort:** `data/raw/Zensus2022_Bevoelkerungszahl_100m-Gitter.csv`
+
+---
+
+### Option A – Streamlit App (empfohlen)
+
+Die einfachste Möglichkeit – keine Python-Kenntnisse erforderlich:
+
+```bash
+streamlit run app.py
+```
+
+Die App öffnet sich automatisch im Browser. Dort kannst du:
+- Eine beliebige deutsche Stadt eingeben
+- Den Pfad zur Zensus-CSV eintragen
+- Distanzkategorien per Schieberegler anpassen
+- Beide Karten direkt herunterladen
+- Ein GeoPackage mit allen Analysedaten exportieren
+
+### Option B – Jupyter Notebook
+
+Für Nutzer die den Code nachvollziehen oder anpassen möchten:
+
+1. Öffne `notebooks/gruenflaechen_analyse.ipynb` in Jupyter, JupyterLab oder VS Code
+2. Passe in **Zelle 1** an:
+
+```python
+STADT = "Bonn, Deutschland"   # beliebige deutsche Stadt
+BASIS = r"C:\Pfad\zu\deinem\Projektordner"
+```
+
+3. **Kernel → Restart & Run All**
+
+---
+
+### Unterstützte Städte
+
+Das Projekt funktioniert für alle deutschen Städte. Die Darstellung passt sich automatisch an:
+- **Kreisfreie Städte** (z.B. Bonn, Dortmund, Berlin): Stadtteile bzw. Stadtbezirke werden angezeigt
+- **Kreisangehörige Orte** (z.B. Pulheim): nur Stadtgrenze
+
+> Die Qualität der Stadtteilgrenzen hängt von der OSM-Datenlage ab. In kleineren Städten können Stadtteile unvollständig eingetragen sein.
 
 ---
 
@@ -90,54 +149,19 @@ Folgende OSM-Tags werden als Naherholungsgebiete klassifiziert
 
 ---
 
-## 🚀 Verwendung
-
-### Voraussetzungen
-
-```bash
-pip install osmnx geopandas matplotlib pandas shapely
-```
-
-### Zensus-Daten
-
-Die Zensus-CSV wird benötigt aber nicht mitgeliefert (Dateigröße > 100 MB).
-
-**Download:** [destatis.de](https://www.destatis.de/static/DE/zensus/gitterdaten/Zensus2022_Bevoelkerungszahl.zip)  
-**Dateiname:** `Zensus2022_Bevoelkerungszahl_100m-Gitter.csv`  
-**Speicherort:** `data/raw/Zensus2022_Bevoelkerungszahl_100m-Gitter.csv`
-
-### Konfiguration
-
-Öffne `notebooks/gruenflaechen_analyse.ipynb` und passe in **Zelle 1** an:
-
-```python
-STADT = "Bonn, Deutschland"   # beliebige deutsche Stadt
-BASIS = r"C:\Pfad\zu\deinem\Projektordner"
-```
-
-Anschließend: **Kernel → Restart & Run All**
-
-### Unterstützte Städte
-
-Das Notebook funktioniert für alle deutschen Städte. Die Darstellung passt sich automatisch an:
-- **Kreisfreie Städte** (z.B. Bonn, Dortmund, Berlin): Stadtteile bzw. Stadtbezirke werden angezeigt
-- **Kreisangehörige Orte** (z.B. Pulheim): nur Stadtgrenze
-
-> Die Qualität der Stadtteilgrenzen hängt von der OSM-Datenlage ab. In kleineren Städten können Stadtteile unvollständig eingetragen sein.
-
----
-
 ## 📁 Projektstruktur
 
 ```
 gruenflaechen-analyse/
+├── app.py                                # Streamlit App
+├── requirements.txt                      # Abhängigkeiten
 ├── notebooks/
-│   └── gruenflaechen_analyse.ipynb   # Hauptanalyse
+│   └── gruenflaechen_analyse.ipynb       # Jupyter Notebook
 ├── outputs/
-│   ├── bonn_erreichbarkeit.png       # Erreichbarkeitskarte
-│   └── bonn_bevoelkerung.png         # Bevölkerungskarte
+│   ├── bonn_erreichbarkeit.png           # Erreichbarkeitskarte
+│   └── bonn_bevoelkerung.png             # Bevölkerungskarte
 ├── data/
-│   └── raw/                          # Zensus-CSV hier ablegen (nicht im Repo)
+│   └── raw/                              # Zensus-CSV hier ablegen (nicht im Repo)
 └── README.md
 ```
 
@@ -150,6 +174,7 @@ gruenflaechen-analyse/
 | [OSMnx](https://osmnx.readthedocs.io) | OpenStreetMap-Daten laden |
 | [GeoPandas](https://geopandas.org) | Geodatenverarbeitung |
 | [Matplotlib](https://matplotlib.org) | Kartenerstellung |
+| [Streamlit](https://streamlit.io) | Web-App |
 | [Zensus 2022](https://www.zensus2022.de) | Bevölkerungsdaten (100m-Raster) |
 | [OpenStreetMap](https://www.openstreetmap.org) | Grünflächen & Verwaltungsgrenzen |
 
