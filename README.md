@@ -51,7 +51,7 @@ Die Zensus-CSV wird benötigt aber nicht mitgeliefert (Dateigröße > 100 MB).
 
 Die einfachste Möglichkeit – keine Python-Kenntnisse erforderlich:
 
-Die Datei "app.py" aus dem repository auf den Desktop laden. Dann in cmd: 
+Die Datei "app.py" aus dem repository auf den Desktop (oder in cmd mit dem Befehl cd C:\DeinPfadzurApp laden. Dann in cmd: 
 
 ```bash
 streamlit run app.py
