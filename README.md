@@ -64,6 +64,9 @@ Die App öffnet sich automatisch im Browser. Dort kannst du:
 - Beide Karten direkt herunterladen
 - Ein GeoPackage mit allen Analysedaten exportieren
 
+Hinweis: Bei einem Klick auf den Download-Button einer Datei durchläuft Streamlit den Code nochmal. 
+-> Einfach kurz warten bis "Analyse abgeschlossen!" erscheint.
+
 ### Option B – Jupyter Notebook
 
 Für Nutzer die den Code nachvollziehen oder anpassen möchten:
